@@ -19,6 +19,8 @@ def _check(text, limit):
         raise ValueError("entry runs past its character limit")
     if len(text) != 1:
         raise ValueError("entry must be exactly one emoji")
+    if text.isascii():
+        raise ValueError("entry must be an emoji, not ASCII text")
     for bad in (" ", "\n", "\r", "\t"):
         if bad in text:
             raise ValueError("entry must be exactly one emoji, no spaces")
